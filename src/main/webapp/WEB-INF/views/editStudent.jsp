@@ -30,10 +30,7 @@
 
         <br><br>
 
-        <label>Gender</label>
-        <form:radiobutton path="gender" value="MALE" label="Male"/>
-        <form:radiobutton path="gender" value="FEMALE" label="Female"/>
-        <form:errors path="gender"/>
+
 
         <br><br>
 
@@ -52,8 +49,6 @@
         <input type="submit" value="Submit" />
 
     </form:form>
-
-    <a href="${pageContext.request.contextPath}">Home</a>
 
 </body>
 </html>

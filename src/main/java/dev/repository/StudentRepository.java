@@ -19,7 +19,7 @@ public class StudentRepository {
 
     public void create(Student student) throws SQLException {
         Connection connection = dataSource.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO students (id, name, email, date_of_birth, gender, quota, country) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO student (id, name, email, date_of_birth, gender, quota, country) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
         preparedStatement.setInt(1, student.getId());
         preparedStatement.setString(2, student.getName());
@@ -34,7 +34,7 @@ public class StudentRepository {
 
     public List<Student> findAll() throws SQLException {
         List<Student> students = new ArrayList<>();
-        String sql = "SELECT id, name, email, date_of_birth, gender, quota, country FROM students";
+        String sql = "SELECT id, name, email, date_of_birth, gender, quota, country FROM student";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -81,7 +81,7 @@ public class StudentRepository {
 
     public void updateStudentById(Student updatedStudent) throws SQLException {
         Connection connection = dataSource.getConnection();
-        String sql = "UPDATE students SET name=?, email=?, date_of_birth=?, gender=?, quota=?, country=? WHERE id=?";
+        String sql = "UPDATE student SET name=?, email=?, date_of_birth=?, gender=?, quota=?, country=? WHERE id=?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, updatedStudent.getName());
             preparedStatement.setString(2, updatedStudent.getEmail());
@@ -96,7 +96,7 @@ public class StudentRepository {
 
     public void deleteById(int id) throws SQLException {
         Connection connection = dataSource.getConnection();
-        String sql = "DELETE FROM students WHERE id = ?";
+        String sql = "DELETE FROM student WHERE id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();

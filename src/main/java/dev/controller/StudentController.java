@@ -44,14 +44,14 @@ public class StudentController {
         }
     }
 
-    @RequestMapping("/students")
+    @RequestMapping("/student")
     public String getAllStudents(Model model) throws SQLException {
         List<Student> students = studentService.getAllStudents();
-        model.addAttribute("students", students);
-        return "students";
+        model.addAttribute("student", students);
+        return "student";
     }
 
-    @RequestMapping("/students/{id}")
+    @RequestMapping("/student/{id}")
     public String findStudent(@PathVariable int id, Model model) throws SQLException {
         Student student = studentService.getStudentById(id);
         model.addAttribute("student", student);
@@ -65,23 +65,23 @@ public class StudentController {
         return "update";
     }
 
-    @RequestMapping(value = "students/{id}/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "student/{id}/edit", method = RequestMethod.POST)
     public String updateStudent(@PathVariable int id, @Valid @ModelAttribute("student") Student student, BindingResult bindingResult) throws SQLException {
         if (bindingResult.hasErrors()) {
             return "update";
         }
         else {
             studentService.updateStudentById(student);
-            return "redirect:/students";
+            return "redirect:/student";
         }
     }
 
 
 
-    @RequestMapping("/students/{id}/delete")
+    @RequestMapping("/student/{id}/delete")
     public String deleteStudent(@PathVariable int id) throws SQLException {
         studentService.deleteStudentById(id);
-        return "redirect:/students";
+        return "redirect:/student";
     }
 
 
