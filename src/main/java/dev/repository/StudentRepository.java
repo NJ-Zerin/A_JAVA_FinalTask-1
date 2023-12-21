@@ -58,7 +58,7 @@ public class StudentRepository {
     }
     public Student findById(int id) throws SQLException {
         Connection connection = dataSource.getConnection();
-        String sql = "SELECT * FROM students WHERE id = ?";
+        String sql = "SELECT * FROM student WHERE id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setLong(1, id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
